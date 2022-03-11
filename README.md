@@ -1,2 +1,3 @@
-# game_guess_number
-Igra za dva, kjer iščeta naključno številko
+# Igra za dva: Najdi naključno številko
+
+Igra za dva, kjer se išče naključno število. Zmaga tisti, ki ima največje število točk

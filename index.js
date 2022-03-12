@@ -13,7 +13,7 @@ document.querySelector(`#dodajIgralca2`).addEventListener(`click`, function () {
 })
 
 let secretNumber = Math.trunc(Math.random() * 50) + 1;
-// console.log(secretNumber);
+console.log(secretNumber);
 
 let number = 50;
 let number1 = 50;
@@ -36,7 +36,6 @@ document.querySelector(`#preveri1`).addEventListener(`click`, function () {
             document.querySelector(`#steviloTock1`).textContent = 0;
         }
 
-
     } else if (vnesenaStevilka1 === secretNumber) {
         document.querySelector(`#stevilkaPravilna`).textContent = `${vnesenaStevilka1}`;
         document.querySelector(`#zmagal1`).textContent = `Čestitam ${vnesenoIme}, zmagali ste!`;
@@ -48,30 +47,17 @@ document.querySelector(`#preveri1`).addEventListener(`click`, function () {
             document.querySelector(`#highScore1`).textContent = highScore1;
         }
 
-        // ČE JE VNESENA ŠTEVILKA MANJŠA
-    } else if (vnesenaStevilka1 < secretNumber) {
-
-        if (number1 > 1) {
-            document.querySelector(`#manj1`).textContent = `Prenizka številka!`;
-            number1--;
-            document.querySelector(`#steviloTock1`).textContent = number1;
+    } else if (vnesenaStevilka1 !== secretNumber) {
+        if (number > 1) {
+            document.querySelector(`#manj1`).textContent = vnesenaStevilka1 > secretNumber ? `Previsoka številka!` : `Prenizka številka!`;
+            number--;
+            document.querySelector(`#steviloTock1`).textContent = number;
         } else {
             document.querySelector(`#manj1`).textContent = `Izgubili ste!`;
             document.querySelector(`#steviloTock1`).textContent = 0;
         }
-
-    } else if (vnesenaStevilka1 > secretNumber) {
-
-        if (number1 > 1) {
-            document.querySelector(`#manj1`).textContent = `Previsoka številka!`;
-            number1--;
-            document.querySelector(`#steviloTock1`).textContent = number1;
-        } else {
-            document.querySelector(`#manj1`).textContent = `Izgubili ste!`;
-            document.querySelector(`#steviloTock1`).textContent = 0;
-        }
-
-    } resetSt1 ()
+    }
+    resetSt1()
 })
 
 // IGRALEC 2
@@ -80,7 +66,6 @@ document.querySelector(`#preveri2`).addEventListener(`click`, function () {
     let vnesenoIme = document.querySelector(`#vneseniIgralec2`).value;
 
     if (!vnesenaStevilka2) {
-
         if (number > 1) {
             document.querySelector(`#manj2`).textContent = `Ni številke!`;
             number--;
@@ -89,7 +74,6 @@ document.querySelector(`#preveri2`).addEventListener(`click`, function () {
             document.querySelector(`#manj2`).textContent = `Izgubili ste!`;
             document.querySelector(`#steviloTock2`).textContent = 0;
         }
-
 
     } else if (vnesenaStevilka2 === secretNumber) {
         document.querySelector(`#stevilkaPravilna`).textContent = `${vnesenaStevilka2}`;
@@ -102,11 +86,11 @@ document.querySelector(`#preveri2`).addEventListener(`click`, function () {
             document.querySelector(`#highScore2`).textContent = highScore;
         }
 
-        // ČE JE VNESENA ŠTEVILKA MANJŠA
-    } else if (vnesenaStevilka2 < secretNumber) {
+        // ČE JE ŠTEVILKA NAPAČNA
+    } else if (vnesenaStevilka2 !== secretNumber) {
 
         if (number > 1) {
-            document.querySelector(`#manj2`).textContent = `Prenizka številka!`;
+            document.querySelector(`#manj2`).textContent = vnesenaStevilka2 > secretNumber ? `Previsoka številka!` : `Prenizka številka!`;
             number--;
             document.querySelector(`#steviloTock2`).textContent = number;
         } else {
@@ -114,19 +98,8 @@ document.querySelector(`#preveri2`).addEventListener(`click`, function () {
             document.querySelector(`#steviloTock2`).textContent = 0;
         }
 
-        // ČE JE VNESENA ŠTEVILKA VEČJA
-    } else if (vnesenaStevilka2 > secretNumber) {
-
-        if (number > 1) {
-            document.querySelector(`#manj2`).textContent = `Previsoka številka!`;
-            number--;
-            document.querySelector(`#steviloTock2`).textContent = number;
-        } else {
-            document.querySelector(`#manj2`).textContent = `Izgubili ste!`;
-            document.querySelector(`#steviloTock2`).textContent = 0;
-        }
-
-    } resetSt2 ()
+    }
+    resetSt2()
 })
 
 document.querySelector(`#ponovno`).addEventListener(`click`, () => {
@@ -145,11 +118,10 @@ document.querySelector(`#ponovno`).addEventListener(`click`, () => {
     document.querySelector(`#steviloTock2`).textContent = 50;
 })
 
-function resetSt1 () {
+function resetSt1() {
     document.querySelector(`#number1`).value = ``;
 }
-function resetSt2 () {
+
+function resetSt2() {
     document.querySelector(`#number2`).value = ``;
 }
-
-

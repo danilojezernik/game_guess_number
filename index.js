@@ -20,9 +20,6 @@ let number1 = 50;
 let highScore = 0;
 let highScore1 = 0;
 
-let izbor1 = document.querySelector(`#preveri1`).value;
-let izbor2 = document.querySelector(`#preveri2`).value;
-
 // FUNKCIJE
 let izgubiliSte1 = function (sporocilo, stevilo) {
     document.querySelector(`#manj1`).textContent = sporocilo;
@@ -65,14 +62,22 @@ document.querySelector(`#preveri1`).addEventListener(`click`, function () {
         document.querySelector(`#zmagal1`).style.backgroundColor = `#60b347`;
         document.querySelector(`#zmagal2`).textContent = `${vnesenoIme2.toUpperCase()}, žal ste izgubili!`
         document.querySelector(`#zmagal2`).style.backgroundColor = `#f07470`;
-        document.querySelector(`#highScore2`).textContent = 0;
+
+        // ZMAGA BARVA ZELENA ZA IGRALCA 1
+        document.querySelector(`#igralec1izgubi`).classList.remove(`bg-light`);
+        document.querySelector(`#igralec1izgubi`).classList.add(`bg-success`);
+        document.querySelector(`#preveri1`).classList.add(`text-white`);
+
+        // IZGUBI BARVA RDEČA ZA IGRALCA 2
+        document.querySelector(`#igralec2izgubi`).classList.remove(`bg-light`);
+        document.querySelector(`#igralec2izgubi`).classList.add(`bg-danger`);
+        document.querySelector(`#preveri2`).classList.add(`text-white`);
 
         // FUNKCIJE
         zmaga1(`⟵`, `⟶`)
         styleFont(2);
 
         //NAJVIŠJA ŠTEVILKA
-
         if (number1 > highScore1) {
             highScore1 = number1;
             document.querySelector(`#highScore1`).textContent = highScore1;
@@ -124,7 +129,18 @@ document.querySelector(`#preveri2`).addEventListener(`click`, function () {
         document.querySelector(`#zmagal2`).style.backgroundColor = `#60b347`;
         document.querySelector(`#zmagal1`).textContent = `${vnesenoIme1.toUpperCase()}, žal ste izgubili!`
         document.querySelector(`#zmagal1`).style.backgroundColor = `#f07470`;
-        document.querySelector(`#highScore1`).textContent = 0;
+
+        // ZMAGA BARVA ZELENA ZA IGRALCA 2
+        document.querySelector(`#igralec2izgubi`).classList.remove(`bg-light`);
+        document.querySelector(`#igralec2izgubi`).classList.add(`bg-success`);
+        document.querySelector(`#preveri2`).classList.add(`text-white`);
+
+        // ZMAGA BARVA ZELENA ZA IGRALCA 1
+        document.querySelector(`#igralec1izgubi`).classList.remove(`bg-light`);
+        document.querySelector(`#igralec1izgubi`).classList.add(`bg-danger`);
+        document.querySelector(`#preveri1`).classList.add(`text-white`);
+
+        // FUNKCIJE
         zmaga2(`⟶`, `⟵`)
         styleFont(2);
 
@@ -143,15 +159,14 @@ document.querySelector(`#preveri2`).addEventListener(`click`, function () {
         } else {
             izgubiliSte2(`Izgubili ste`, 0);
         }
-    }
-    resetSt2()
+    } resetSt2()
 })
 
 document.querySelector(`#ponovno`).addEventListener(`click`, () => {
     number = 50;
     number1 = 50;
     secretNumber = Math.trunc(Math.random() * 50) + 1;
-    // console.log(secretNumber)
+    console.log(secretNumber)
     document.querySelector(`#manj2`).textContent = `Pričnite z ugibanjem`;
     document.querySelector(`#manj1`).textContent = `Pričnite z ugibanjem`;
     document.querySelector(`#stevilkaPravilna`).textContent = `?`;
@@ -161,6 +176,12 @@ document.querySelector(`#ponovno`).addEventListener(`click`, () => {
     document.querySelector(`#zmagal2`).style.backgroundColor = ``;
     document.querySelector(`#steviloTock1`).textContent = 50;
     document.querySelector(`#steviloTock2`).textContent = 50;
+    document.querySelector(`#igralec1izgubi`).classList.remove(`bg-success`);
+    document.querySelector(`#igralec1izgubi`).classList.add(`bg-light`);
+    document.querySelector(`#igralec2izgubi`).classList.remove(`bg-danger`);
+    document.querySelector(`#igralec2izgubi`).classList.add(`bg-light`);
+    document.querySelector(`#preveri1`).classList.remove(`text-white`);
+    document.querySelector(`#preveri2`).classList.remove(`text-white`);
 })
 
 // RESET VPISANO ŠTEVILKO 1
